@@ -17,3 +17,5 @@ sudo insmod modulocpu.ko
 cat /proc/infomem
 cat /proc/infocpu
 head /proc/infoproc
+
+echo 'localhost/memoria.php'
