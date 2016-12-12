@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="css/font-awesome-ie7.css">
 
     <script src="js/modernizr-2.6.2-respond-1.1.0.min.js"></script>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
     <script>
@@ -41,15 +41,7 @@
                 backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'
             },
             xAxis: {
-                categories: [
-                    'Monday',
-                    'Tuesday',
-                    'Wednesday',
-                    'Thursday',
-                    'Friday',
-                    'Saturday',
-                    'Sunday'
-                ],
+                categories: [],
                 plotBands: [{ // visualize the weekend
                     from: 4.5,
                     to: 6.5,
@@ -58,7 +50,7 @@
             },
             yAxis: {
                 title: {
-                    text: 'Fruit units'
+                    text: '% UTILIZACION GB'
                 }
             },
             tooltip: {
@@ -74,11 +66,8 @@
                 }
             },
             series: [{
-                name: 'John',
-                data: [3, 4, 3, 5, 4, 1, 12]
-            }, {
-                name: 'Jane',
-                data: [1, 3, 4, 3, 3, 5, 4]
+                name: 'RAM',
+                data: [1000000, 3, 4, 3, 3, 5, 4,1, 3, 4, 3, 3, 5, 4,1, 3, 4, 3, 3, 5]
             }]
         });
     });
