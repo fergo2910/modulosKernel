@@ -1,0 +1,1 @@
+cmd_/var/www/html/Modulos/cpu/modulocpu.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o /var/www/html/Modulos/cpu/modulocpu.ko /var/www/html/Modulos/cpu/modulocpu.o /var/www/html/Modulos/cpu/modulocpu.mod.o

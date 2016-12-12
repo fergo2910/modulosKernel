@@ -1,0 +1,1 @@
+cmd_/var/www/html/Modulos/procesos/moduloprocesos.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o /var/www/html/Modulos/procesos/moduloprocesos.ko /var/www/html/Modulos/procesos/moduloprocesos.o /var/www/html/Modulos/procesos/moduloprocesos.mod.o

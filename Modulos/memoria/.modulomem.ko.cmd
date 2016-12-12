@@ -1,0 +1,1 @@
+cmd_/var/www/html/Modulos/memoria/modulomem.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o /var/www/html/Modulos/memoria/modulomem.ko /var/www/html/Modulos/memoria/modulomem.o /var/www/html/Modulos/memoria/modulomem.mod.o
