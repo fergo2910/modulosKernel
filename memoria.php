@@ -31,7 +31,7 @@
                 layout: 'vertical',
                 align: 'left',
                 verticalAlign: 'top',
-                x: 150,
+                x: 10,
                 y: 0,
                 floating: true,
                 borderWidth: 1,
@@ -234,12 +234,13 @@
               <div class="ruler"></div>
               <div class="featured-blocks">
                 <div class="row-fluid">
-                  <div class="span4">
+                  <div class="span2">
                     <div class="media">
                       <i class="fw-icon-refresh icon"></i>
                       <div class="media-body">
                         <h1 class="media-heading">Memoria RAM</h1>
-                        <?php
+                      </div>
+                      <?php
                           $ram = simplexml_load_file('/proc/infomem');
                         ?>
                         <hr>
@@ -256,16 +257,15 @@
                             </tr>
                           </table>
                         </div>
-                      </div>
                     </div>
                   </div>
-                  <div class="span4">
+                  <div class="span3">
                     <div class="media">
                       <i class="fw-icon-headphones icon"></i>
                       <div class="media-body">
                         <h1 class="media-heading">Memoria SWAP</h1>
-                        
-                        <?php
+                      </div>
+                      <?php
                           $ram = simplexml_load_file('/proc/infomem');
                         ?>
                         <hr>
@@ -282,16 +282,15 @@
                             </tr>
                           </table>
                         </div>
-                      </div>
                     </div>
                   </div>
-                  <div class="span4">
+                  <div class="span2">
                     <div class="media">
                       <i class="fw-icon-headphones icon"></i>
                       <div class="media-body">
                         <h1 class="media-heading">CPU</h1>
-                        
-                        <?php
+                      </div>
+                      <?php
                           $cpu = simplexml_load_file('/proc/infocpu');
                         ?>
                         <hr>
@@ -322,13 +321,22 @@
                             </tr>
                           </table>
                         </div>
+                    </div>
+                  </div>
+                  <div class="span5">
+                    <div class="media">
+                      <i class="fw-icon-headphones icon"></i>
+                      <div class="media-body">
+                        <h1 class="media-heading">grafica</h1>
                       </div>
+                        <hr>
+                        <div id="grafica" style="min-width: 310px; height: 200px; margin: 0 auto"></div>
                     </div>
                   </div>
               </div>
             </div>
             <div class="ruler"></div>
-            <div id="grafica" style="min-width: 310px; height: 400px; margin: 0 auto"></div>            
+                        
           </div>
           </div>
           <div class="site-footer">
