@@ -18,6 +18,60 @@
     <link rel="stylesheet" href="css/font-awesome-ie7.css">
 
     <script src="js/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script>
+      $(function () {
+        Highcharts.chart('grafica', {
+            chart: {
+                type: 'areaspline'
+            },
+            title: {
+                text: 'Average fruit consumption during one week'
+            },
+            legend: {
+                layout: 'vertical',
+                align: 'left',
+                verticalAlign: 'top',
+                x: 150,
+                y: 100,
+                floating: true,
+                borderWidth: 1,
+                backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'
+            },
+            xAxis: {
+                categories: [],
+                plotBands: [{ // visualize the weekend
+                    from: 4.5,
+                    to: 6.5,
+                    color: 'rgba(68, 170, 213, .2)'
+                }]
+            },
+            yAxis: {
+                title: {
+                    text: '% UTILIZACION GB'
+                }
+            },
+            tooltip: {
+                shared: true,
+                valueSuffix: ' units'
+            },
+            credits: {
+                enabled: false
+            },
+            plotOptions: {
+                areaspline: {
+                    fillOpacity: 0.5
+                }
+            },
+            series: [{
+                name: 'RAM',
+                data: [1000000, 3, 4, 3, 3, 5, 4,1, 3, 4, 3, 3, 5, 4,1, 3, 4, 3, 3, 5]
+            }]
+        });
+    });
+    </script>
   </head>
     <body>
       <!--[if lt IE 7]>
@@ -119,6 +173,8 @@
                   </div>
               </div>
             </div>
+            <div class="ruler"></div>
+            <div id="grafica" style="min-width: 310px; height: 400px; margin: 0 auto"></div>            
           </div>
           </div>
           <div class="site-footer">
