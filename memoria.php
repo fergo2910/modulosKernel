@@ -1,8 +1,5 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<html class="no-js"> <!--<![endif]-->
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -28,7 +25,7 @@
                 type: 'areaspline'
             },
             title: {
-                text: 'Average fruit consumption during one week'
+                text: 'Utilizacion de memoria RAM'
             },
             legend: {
                 layout: 'vertical',
@@ -50,7 +47,7 @@
             },
             yAxis: {
                 title: {
-                    text: '% UTILIZACION GB'
+                    text: '% UTILIZACION KB'
                 }
             },
             tooltip: {
@@ -67,10 +64,128 @@
             },
             series: [{
                 name: 'RAM',
-                data: [1000000, 3, 4, 3, 3, 5, 4,1, 3, 4, 3, 3, 5, 4,1, 3, 4, 3, 3, 5]
+                data: [
+                        <?php
+
+                          $archivo = "/var/www/html/grafica.txt";
+                          $ram = simplexml_load_file('/proc/infomem');
+                          $dato = $ram->memoria->totalram - $ram->memoria->freeram;
+                          $actual = file_get_contents($archivo);
+                          file_put_contents($archivo, $dato."\n".$actual);
+                          $contador = 0;
+                          $fp = fopen($archivo, "r");
+                          while(!feof($fp) && $contador < 20) {
+                              $linea = fgets($fp);
+                              $valorRam[$contador] = $linea;
+                              $contador++;
+                          }
+                          fclose($fp);
+                          for ($i = $contador; $i < 20; $i++) {
+                              $valorRam[$i] = "0";
+                          }
+                          for ($j = 19; $j >= 0; $j--) {
+                              if($j != 19)
+                              {
+                                  echo ",";
+                              }
+                              if($valorRam[$j] == '')
+                                echo "0";
+                              echo $valorRam[$j];
+                          }
+                        ?>
+                      ]
             }]
         });
     });
+    </script>
+    <script>
+      $(function () {
+          $.getJSON('https://www.highcharts.com/samples/data/jsonp.php?filename=usdeur.json&callback=?', function (data) {
+
+              Highcharts.chart('graficaa', {
+                  chart: {
+                      zoomType: 'x'
+                  },
+                  title: {
+                      text: 'USD to EUR exchange rate over time'
+                  },
+                  subtitle: {
+                      text: document.ontouchstart === undefined ?
+                              'Click and drag in the plot area to zoom in' : 'Pinch the chart to zoom in'
+                  },
+                  xAxis: {
+                      type: 'datetime'
+                  },
+                  yAxis: {
+                      title: {
+                          text: 'Exchange rate'
+                      }
+                  },
+                  legend: {
+                      enabled: false
+                  },
+                  plotOptions: {
+                      area: {
+                          fillColor: {
+                              linearGradient: {
+                                  x1: 0,
+                                  y1: 0,
+                                  x2: 0,
+                                  y2: 1
+                              },
+                              stops: [
+                                  [0, Highcharts.getOptions().colors[0]],
+                                  [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
+                              ]
+                          },
+                          marker: {
+                              radius: 2
+                          },
+                          lineWidth: 1,
+                          states: {
+                              hover: {
+                                  lineWidth: 1
+                              }
+                          },
+                          threshold: null
+                      }
+                  },
+
+                  series: [{
+                      type: 'area',
+                      name: 'USD to EUR',
+                      data: [
+                              <?php
+
+                                $archivo = "/var/www/html/grafica.txt";
+                                $ram = simplexml_load_file('/proc/infomem');
+                                $dato = $ram->memoria->totalram - $ram->memoria->freeram;
+                                $actual = file_get_contents($archivo);
+                                file_put_contents($archivo, $dato."\n".$actual);
+                                $contador = 0;
+                                $fp = fopen($archivo, "r");
+                                while(!feof($fp)) {
+                                    $linea = fgets($fp);
+                                    $valorRam[$contador] = $linea;
+                                    $contador++;
+                                }
+                                fclose($fp);
+                                $inicio = $contador;
+                                for ($j = $contador; $j >= 0; $j--) {
+                                    if($j != $inicio)
+                                    {
+                                        echo ",";
+                                    }
+                                    if($valorRam[$j] == '')
+                                      echo "0";
+                                    echo $valorRam[$j];
+                                }
+                              ?>
+                            ]
+                  }]
+              });
+          });
+      });
     </script>
   </head>
     <body>
@@ -120,7 +235,7 @@
               <div class="ruler"></div>
               <div class="featured-blocks">
                 <div class="row-fluid">
-                  <div class="span6">
+                  <div class="span3">
                     <div class="media">
                       <i class="fw-icon-refresh icon"></i>
                       <div class="media-body">
@@ -145,7 +260,7 @@
                       </div>
                     </div>
                   </div>
-                  <div class="span6">
+                  <div class="span3">
                     <div class="media">
                       <i class="fw-icon-headphones icon"></i>
                       <div class="media-body">
@@ -165,6 +280,46 @@
                             </tr>
                             <tr style="color: #194E9C">
                               <td>Libre</td><td><?php echo $ram->memoria->freeswap; ?></td>
+                            </tr>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="span3">
+                    <div class="media">
+                      <i class="fw-icon-headphones icon"></i>
+                      <div class="media-body">
+                        <h1 class="media-heading">CPU</h1>
+                        
+                        <?php
+                          $cpu = simplexml_load_file('/proc/infocpu');
+                        ?>
+                        <hr>
+                        <div id="container">
+                          <table class="table">
+                            <tr>
+                              <th>Target</th><th>Tiempo</th>
+                            </tr>
+                            
+                            <tr style="color: #0DA068">
+                              <td>user</td><td><?php echo $cpu->cpu->user; ?></td>
+                            </tr>
+                            
+                            <tr style="color: #194E9C">
+                              <td>iowait</td><td><?php echo $cpu->cpu->iowait; ?></td>
+                            </tr>
+
+                            <tr style="color: #ED9C13">
+                              <td>system</td><td><?php echo $cpu->cpu->system; ?></td>
+                            </tr>
+
+                            <tr style="color: #ED5713">
+                              <td>nice</td><td><?php echo $cpu->cpu->nice; ?></td>
+                            </tr>
+
+                            <tr style="color: #057249">
+                              <td>idle</td><td><?php echo $cpu->cpu->idle; ?></td>
                             </tr>
                           </table>
                         </div>
