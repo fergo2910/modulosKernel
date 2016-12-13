@@ -60,10 +60,53 @@
         <div class="container bg-light-gray">
           <div class="main-content">
             <div class="featured-heading">
-              <h1>Sed egestas ante et vulputate</h1>
+              <h1>Módulos de kernel activos</h1>
               <div class="ruler"></div>
-            <div class="ruler"></div>
-              <h2>semper est vitae luctus metus libero eu augue Morbi purus libero</h2>
+              <h2>Levantar y bajar módulos de kernel</h2>
+              <table class="table">
+                <tr>
+                  <th>Módulo</th><th>Activar</th><th>Desactivar</th>
+                </tr>
+                <tr style="color: #f76e5d">
+                  <td>Memoria</td><td><input type="button" onclick="subirMem()"></td><td><input type="button" onclick="bajarMem()"></td>
+                </tr>
+                <tr style="color: #f76e5d">
+                  <td>Procesos</td><td><input type="button" onclick="subirProc()"></td><td><input type="button" onclick="bajarProc()"></td>
+                </tr>
+                <tr style="color: #f76e5d">
+                  <td>Arbol</td><td><input type="button" onclick="subirArb()"></td><td><input type="button" onclick="bajarArb()"></td>
+                </tr>
+              </table>
+              <?php
+                function subirMem(){
+                   exec("cd /var/www/html/Modulos/memoria");
+                   exec("make");
+                   exec("sudo insmod modulomem.ko < /var/www/html/psw'");
+                   exec("cd /var/www/html/Modulos/cpu");
+                   exec("make");
+                   exec("sudo insmod modulocpu.ko < /var/www/html/psw");
+                }
+                function subirProc(){
+                   exec("cd /var/www/html/Modulos/procesos");
+                   exec("make");
+                   exec("sudo insmod moduloprocesos.ko < /var/www/html/psw");
+                }
+                function subirArb(){
+                   exec("cd /var/www/html/Modulos/memoria");
+                   exec("make");
+                   exec("sudo insmod modulomem.ko < /var/www/html/psw");
+                }
+                function bajarMem(){
+                   exec("sudo rmmod modulomem < /var/www/html/psw");
+                   exec("sudo rmmod modulocpu < /var/www/html/psw");
+                }
+                function bajarProc(){
+                   exec("sudo rmmod moduloprocesos < /var/www/html/psw");
+                }
+                function bajarArb(){
+                   exec("sudo rmmod modulomem < /var/www/html/psw");
+                }
+              ?>
             </div>
             </div>
           </div>
