@@ -1,4 +1,5 @@
 sudo rm /var/www/html/proc.txt
+sudo rm /var/www/html/grafica.txt
 sudo rmmod modulomem
 sudo rmmod modulocpu
 sudo rmmod moduloprocesos

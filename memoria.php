@@ -7,6 +7,8 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
 
+    <meta http-equiv="refresh" content="2" />
+
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/bootstrap-responsive.css">
     <link rel="stylesheet" href="css/custom-styles.css">
@@ -31,8 +33,8 @@
                 layout: 'vertical',
                 align: 'left',
                 verticalAlign: 'top',
-                x: 150,
-                y: 100,
+                x: 10,
+                y: 0,
                 floating: true,
                 borderWidth: 1,
                 backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'
@@ -40,8 +42,8 @@
             xAxis: {
                 categories: [],
                 plotBands: [{ // visualize the weekend
-                    from: 4.5,
-                    to: 6.5,
+                    from: 0,
+                    to: 0,
                     color: 'rgba(68, 170, 213, .2)'
                 }]
             },
@@ -107,7 +109,7 @@
                       zoomType: 'x'
                   },
                   title: {
-                      text: 'USD to EUR exchange rate over time'
+                      text: 'Utilizacion de memoria RAM'
                   },
                   subtitle: {
                       text: document.ontouchstart === undefined ?
@@ -118,7 +120,7 @@
                   },
                   yAxis: {
                       title: {
-                          text: 'Exchange rate'
+                          text: '% UTILIZACION KB'
                       }
                   },
                   legend: {
@@ -152,8 +154,8 @@
                   },
 
                   series: [{
-                      type: 'area',
-                      name: 'USD to EUR',
+                      type: '%',
+                      name: 'RAM',
                       data: [
                               <?php
 
@@ -230,17 +232,17 @@
           <div class="main-content">
             <div class="featured-heading">
               <h1>Memoria del servidor</h1>
-              <h2>asdf</h2>
             </div>
               <div class="ruler"></div>
               <div class="featured-blocks">
                 <div class="row-fluid">
-                  <div class="span3">
+                  <div class="span2">
                     <div class="media">
                       <i class="fw-icon-refresh icon"></i>
                       <div class="media-body">
                         <h1 class="media-heading">Memoria RAM</h1>
-                        <?php
+                      </div>
+                      <?php
                           $ram = simplexml_load_file('/proc/infomem');
                         ?>
                         <hr>
@@ -249,15 +251,14 @@
                             <tr>
                               <th>Target</th><th>Memoria (Kb)</th>
                             </tr>
-                            <tr style="color: #0DA068">
+                            <tr style="color: #f76e5d">
                               <td>Usado</td><td><?php echo $ram->memoria->totalram - $ram->memoria->freeram; ?></td>
                             </tr>
-                            <tr style="color: #194E9C">
+                            <tr style="color: #f76e5d">
                               <td>Libre</td><td><?php echo $ram->memoria->freeram; ?></td>
                             </tr>
                           </table>
                         </div>
-                      </div>
                     </div>
                   </div>
                   <div class="span3">
@@ -265,8 +266,8 @@
                       <i class="fw-icon-headphones icon"></i>
                       <div class="media-body">
                         <h1 class="media-heading">Memoria SWAP</h1>
-                        
-                        <?php
+                      </div>
+                      <?php
                           $ram = simplexml_load_file('/proc/infomem');
                         ?>
                         <hr>
@@ -275,24 +276,23 @@
                             <tr>
                               <th>Target</th><th>Memoria (Kb)</th>
                             </tr>
-                            <tr style="color: #0DA068">
+                            <tr style="color: #f76e5d">
                               <td>Usado</td><td><?php echo $ram->memoria->totalswap ; ?></td>
                             </tr>
-                            <tr style="color: #194E9C">
+                            <tr style="color: #f76e5d">
                               <td>Libre</td><td><?php echo $ram->memoria->freeswap; ?></td>
                             </tr>
                           </table>
                         </div>
-                      </div>
                     </div>
                   </div>
-                  <div class="span3">
+                  <div class="span2">
                     <div class="media">
                       <i class="fw-icon-headphones icon"></i>
                       <div class="media-body">
                         <h1 class="media-heading">CPU</h1>
-                        
-                        <?php
+                      </div>
+                      <?php
                           $cpu = simplexml_load_file('/proc/infocpu');
                         ?>
                         <hr>
@@ -302,34 +302,43 @@
                               <th>Target</th><th>Tiempo</th>
                             </tr>
                             
-                            <tr style="color: #0DA068">
+                            <tr style="color: #f76e5d">
                               <td>user</td><td><?php echo $cpu->cpu->user; ?></td>
                             </tr>
                             
-                            <tr style="color: #194E9C">
+                            <tr style="color: #f76e5d">
                               <td>iowait</td><td><?php echo $cpu->cpu->iowait; ?></td>
                             </tr>
 
-                            <tr style="color: #ED9C13">
+                            <tr style="color: #f76e5d">
                               <td>system</td><td><?php echo $cpu->cpu->system; ?></td>
                             </tr>
 
-                            <tr style="color: #ED5713">
+                            <tr style="color: #f76e5d">
                               <td>nice</td><td><?php echo $cpu->cpu->nice; ?></td>
                             </tr>
 
-                            <tr style="color: #057249">
+                            <tr style="color: #f76e5d">
                               <td>idle</td><td><?php echo $cpu->cpu->idle; ?></td>
                             </tr>
                           </table>
                         </div>
+                    </div>
+                  </div>
+                  <div class="span5">
+                    <div class="media">
+                      <i class="fw-icon-headphones icon"></i>
+                      <div class="media-body">
+                        <h1 class="media-heading">grafica</h1>
                       </div>
+                        <hr>
+                        <div id="grafica" style="min-width: 310px; height: 200px; margin: 0 auto"></div>
                     </div>
                   </div>
               </div>
             </div>
             <div class="ruler"></div>
-            <div id="grafica" style="min-width: 310px; height: 400px; margin: 0 auto"></div>            
+                        
           </div>
           </div>
           <div class="site-footer">
