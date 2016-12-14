@@ -63,25 +63,47 @@
               <h1>Módulos de kernel activos</h1>
               <div class="ruler"></div>
               <h2>Levantar y bajar módulos de kernel</h2>
-              <table class="table">
-                <tr>
-                  <th>Módulo</th><th>Activar</th><th>Desactivar</th>
-                </tr>
-                <tr style="color: #f76e5d">
-                  <td>Memoria</td><td><input type="button" onclick="subirMem()"></td><td><input type="button" onclick="bajarMem()"></td>
-                </tr>
-                <tr style="color: #f76e5d">
-                  <td>Procesos</td><td><input type="button" onclick="subirProc()"></td><td><input type="button" onclick="bajarProc()"></td>
-                </tr>
-                <tr style="color: #f76e5d">
-                  <td>Arbol</td><td><input type="button" onclick="subirArb()"></td><td><input type="button" onclick="bajarArb()"></td>
-                </tr>
-              </table>
+              <form action="" method="post">      
+                <table class="table">
+                  <tr>
+                    <th>Módulo</th><th>Activar</th><th>Desactivar</th>
+                  </tr>
+                  <tr style="color: #f76e5d">
+                    <td>Memoria</td><td><input type="submit" value="Activar" name="subirMem"/></td><td><input type="submit" value="Desactivar" name="bajarMem"/></td>
+                  </tr>
+                  <tr style="color: #f76e5d">
+                    <td>Procesos</td><td><input type="submit" value="Activar" name="subirProc"/></td><td><input type="submit" value="Desactivar" name="bajarProc"/></td>
+                  </tr>
+                  <tr style="color: #f76e5d">
+                    <td>Arbol</td><td><input type="submit" value="Activar" name="subirArb"/></td><td><input type="submit" value="Desactivar" name="bajarArb"/></td>
+                  </tr>
+                </table>
+              </form>
               <?php
+
+                if(isset($_POST['subirMem'])){
+                   subirMem();
+                }
+                else if(isset($_POST['subirProc'])){
+                   subirProc();
+                }
+                else if(isset($_POST['subirArb'])){
+                   subirArb();
+                }
+                else if(isset($_POST['bajarMem'])){
+                   bajarMem();
+                }
+                else if(isset($_POST['bajarProc'])){
+                   bajarProc();
+                }
+                else if(isset($_POST['bajarArb'])){
+                   bajarArb();
+                }
+
                 function subirMem(){
                    exec("cd /var/www/html/Modulos/memoria");
                    exec("make");
-                   exec("sudo insmod modulomem.ko < /var/www/html/psw'");
+                   exec("sudo insmod modulomem.ko < /var/www/html/psw");
                    exec("cd /var/www/html/Modulos/cpu");
                    exec("make");
                    exec("sudo insmod modulocpu.ko < /var/www/html/psw");
