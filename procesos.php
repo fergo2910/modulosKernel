@@ -51,10 +51,10 @@
           <div class="mini-menu">
             <label>
               <select class="selectnav">
-              <option value="#" selected="">Memoria</option>
-              <option value="#">Procesos</option>
-              <option value="#">Arbol de procesos</option>
-              <option value="#">Modulos de kerne</option>
+              <option value="memoria.php" >Memoria</option>
+              <option value="procesos.php" selected="">Procesos</option>
+              <option value="arbol.php">Arbol de procesos</option>
+              <option value="modulos.php">Modulos de kerne</option>
               </select>
             </label>
           </div>

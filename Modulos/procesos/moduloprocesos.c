@@ -73,7 +73,7 @@ static void __exit proc_cleanup(void)
 static int __init proc_init(void)
 {
 	proc_create("infoproc", 0, NULL, &proc_fops);
-    printk(KERN_ALERT "MODULO DE PROCESOS INICIADO");
+    printk(KERN_ALERT "MODULO DE PROCESOS ARBOL INICIADO");
 	return 0;
 }
 
