@@ -17,17 +17,17 @@ __attribute__((section(".gnu.linkonce.this_module"))) = {
 static const struct modversion_info ____versions[]
 __used
 __attribute__((section("__versions"))) = {
-	{ 0xc6c01fa, __VMLINUX_SYMBOL_STR(module_layout) },
-	{ 0x98ac23a8, __VMLINUX_SYMBOL_STR(single_release) },
-	{ 0x57793513, __VMLINUX_SYMBOL_STR(seq_read) },
-	{ 0x9e2b878e, __VMLINUX_SYMBOL_STR(seq_lseek) },
-	{ 0xa13aece1, __VMLINUX_SYMBOL_STR(proc_create_data) },
+	{ 0x5c7202ab, __VMLINUX_SYMBOL_STR(module_layout) },
+	{ 0x27761459, __VMLINUX_SYMBOL_STR(single_release) },
+	{ 0x7b40fc97, __VMLINUX_SYMBOL_STR(seq_read) },
+	{ 0x146da384, __VMLINUX_SYMBOL_STR(seq_lseek) },
+	{ 0x85173fa9, __VMLINUX_SYMBOL_STR(proc_create_data) },
 	{ 0x27e1a049, __VMLINUX_SYMBOL_STR(printk) },
 	{ 0xdb7305a1, __VMLINUX_SYMBOL_STR(__stack_chk_fail) },
 	{ 0x56d4ca56, __VMLINUX_SYMBOL_STR(seq_printf) },
 	{ 0x891bef26, __VMLINUX_SYMBOL_STR(vm_stat) },
 	{ 0x40c7247c, __VMLINUX_SYMBOL_STR(si_meminfo) },
-	{ 0x8574f4e9, __VMLINUX_SYMBOL_STR(single_open) },
+	{ 0xb138da1e, __VMLINUX_SYMBOL_STR(single_open) },
 	{ 0xbdfb6dbb, __VMLINUX_SYMBOL_STR(__fentry__) },
 };
 
